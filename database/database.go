@@ -27,9 +27,9 @@ func StartDB() {
 	host := os.Getenv("PGHOST")
 	port := os.Getenv("PGPORT")
 	database := os.Getenv("PGDATABASE")
-	SSLMODE := os.Getenv("PGSSLMODE")
+	sslmode := os.Getenv("PGSSLMODE")
 
-	config := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s TimeZone=Asia/Jakarta", host, user, password, database, port, SSLMODE)
+	config := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s TimeZone=Asia/Jakarta", host, user, password, database, port, sslmode)
 	db, err := gorm.Open(postgres.Open(config), &gorm.Config{})
 
 	if err != nil {
