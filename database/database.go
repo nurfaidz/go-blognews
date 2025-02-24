@@ -3,6 +3,7 @@ package database
 import (
 	"fmt"
 	"github.com/joho/godotenv"
+	"go-blognews/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"log"
@@ -35,7 +36,18 @@ func StartDB() {
 		log.Fatal("error connecting to database", err)
 	}
 
-	db.Debug().AutoMigrate()
+	db.Debug().AutoMigrate(
+		&models.Users{},
+		&models.Roles{},
+		&models.Permissions{},
+		&models.RolePermissions{},
+		&models.Categories{},
+		&models.Tags{},
+		&models.Articles{},
+		&models.ArticleTags{},
+		&models.Likes{},
+		&models.Comments{},
+	)
 }
 
 func GetDB() *gorm.DB {
